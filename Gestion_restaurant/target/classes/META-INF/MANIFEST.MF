@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: Gestion restaurant
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: X250
+Implementation-Vendor-Id: com.project.si
+Build-Jdk: 1.8.0_191
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/si_project
+Created-By: Maven Integration for Eclipse
+
