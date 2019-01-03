@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
 @RequestMapping
 public class CommandeController {
 	@Autowired
@@ -37,6 +38,11 @@ public class CommandeController {
 	@RequestMapping("/commandes")
 	public List<Commande> getAllCommanndes(){
 		return commandeService.getAllCommandes();
+	}
+	
+	@RequestMapping("/commandes/fournisseur={id_fournisseur}")
+	public List<Commande> getByFournisseur(@PathVariable int id_fournisseur){
+		return commandeService.getByFournisseur(id_fournisseur);
 	}
 	
 }

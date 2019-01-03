@@ -19,7 +19,7 @@ public class MenuService {
 		for(int i=0;i<menus.size();i++) {
 			Menu t = menus.get(i);
 			if(t.getId()==id) {
-				menus.set(i, t);
+				menus.set(i, menu);
 			}
 		}
 	}

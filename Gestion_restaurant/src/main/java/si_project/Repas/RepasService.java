@@ -19,7 +19,7 @@ public class RepasService {
 		for(int i=0;i<repas_s.size();i++) {
 			Repas t = repas_s.get(i);
 			if(t.getId()==id) {
-				repas_s.set(i, t);
+				repas_s.set(i, repas);
 			}
 		}
 	}

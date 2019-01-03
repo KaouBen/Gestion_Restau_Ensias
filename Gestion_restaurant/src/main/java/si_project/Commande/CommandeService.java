@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import si_project.Article.Article;
+
 
 @Service
 public class CommandeService {
@@ -19,7 +21,7 @@ public class CommandeService {
 		for(int i=0;i<commandes.size();i++) {
 			Commande t = commandes.get(i);
 			if(t.getId()==id) {
-				commandes.set(i, t);
+				commandes.set(i, commande);
 			}
 		}
 	}
@@ -35,6 +37,16 @@ public class CommandeService {
 	
 	public List<Commande> getAllCommandes(){
 		return this.commandes;
+	}
+	
+	public List<Commande> getByFournisseur(int id_fournisseur){
+		List<Commande> nvListe = new ArrayList<>();
+		for(Commande c : this.commandes) {
+			if(c.getId_fournisseur()==id_fournisseur) {
+				nvListe.add(c);
+			}
+		}
+		return nvListe;
 	}
 	
 }
