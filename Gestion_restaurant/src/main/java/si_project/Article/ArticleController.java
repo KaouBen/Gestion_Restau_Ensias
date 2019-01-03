@@ -1,6 +1,7 @@
 package si_project.Article;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,7 +34,7 @@ public class ArticleController {
 	}
 	
 	@RequestMapping("/articles/{ref}")
-	public Article getArticle(@PathVariable String ref) {
+	public Optional<Article> getArticle(@PathVariable String ref) {
 		return articleService.getArticle(ref);
 	}
 	
@@ -42,8 +43,8 @@ public class ArticleController {
 		return articleService.getAllArticles();
 	}
 	
-	@RequestMapping("/articles/{categ}")
+	/*@RequestMapping("/articles/{categ}")
 	public List<Article> getByCategory(@PathVariable String categ){
 		return articleService.getByCategory(categ);
-	}
+	}*/
 }

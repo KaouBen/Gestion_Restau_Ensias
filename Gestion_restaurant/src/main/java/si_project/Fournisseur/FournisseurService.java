@@ -2,37 +2,41 @@ package si_project.Fournisseur;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import si_project.Article.Article;
+import si_project.Article.ArticleRepository;
 
 @Service
 public class FournisseurService {
-
+	
+	@Autowired
+	FournisseurRepository fournisseurRepository;
 	List<Fournisseur> fournisseurs = new ArrayList<Fournisseur>();
 	
 	public void addFournisseur(Fournisseur fournisseur) {
-		fournisseurs.add(fournisseur);
+		fournisseurRepository.save(fournisseur);
 	}
 	
-	public void updateFournisseur(Fournisseur fournisseur , int id) {
-		for(int i=0;i<fournisseurs.size();i++) {
-			Fournisseur t = fournisseurs.get(i);
-			if(t.getId()==id) {
-				fournisseurs.set(i, t);
-			}
-		}
+	public void updateFournisseur(Fournisseur fournisseur, String id) {
+		fournisseurRepository.save(fournisseur);
 	}
 	
-	public void deleteFournisseur(int id) {
-		fournisseurs.removeIf(t -> t.getId()==id);
+	public void deleteFournisseur(String id) {
+		fournisseurRepository.deleteById(id);
 		return;
 	}
 	
-	public Fournisseur getFournisseur(int id) {
-		return fournisseurs.stream().filter(t->t.getId()==id).findFirst().get();
+	public Optional<Fournisseur> getFournisseur(String id) {
+		return fournisseurRepository.findById(id);
 	}
 	
 	public List<Fournisseur> getAllFournisseurs(){
-		return this.fournisseurs;
+		List<Fournisseur> fournisseurs = new ArrayList<Fournisseur>();
+		fournisseurRepository.findAll().forEach(fournisseurs::add);
+		return fournisseurs;
 	}
 }

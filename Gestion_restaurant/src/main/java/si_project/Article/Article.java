@@ -1,24 +1,36 @@
 package si_project.Article;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import si_project.Commande.Commande;
+
+@Entity
 public class Article {
+	
+	@Id
 	private String ref;
 	private String desg;
 	private double prixHt;
-	
 	private String uniteMesure;
 	private double tva;
 	private String img;
 	private int qteStock;
 	private double maxApprov;
 	private String categorie;
+	@ManyToMany
+	List<Commande> commandes = new ArrayList<>();
 	
 	public Article() {
 		super();
 	}
 	
-	
 	public Article(String ref, String desg, double prixHt, String uniteMesure, double tva, String img, int qteStock,
-			double maxApprov, String categorie) {
+			double maxApprov, String categorie,List<Commande> commandes) {
 		super();
 		this.ref = ref;
 		this.desg = desg;
@@ -29,6 +41,7 @@ public class Article {
 		this.qteStock = qteStock;
 		this.maxApprov = maxApprov;
 		this.categorie = categorie;
+		this.commandes = commandes;
 	}
 	public String getRef() {
 		return ref;
@@ -83,6 +96,15 @@ public class Article {
 	}
 	public void setCategorie(String categorie) {
 		this.categorie = categorie;
+	}
+
+	public List<Commande> getCommandes() {
+		if(commandes == null) commandes = new ArrayList<>();
+		return commandes;
+	}
+
+	public void setCommandes(List<Commande> commandes) {
+		this.commandes = commandes;
 	}
 	
 	

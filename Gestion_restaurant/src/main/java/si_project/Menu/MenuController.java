@@ -17,7 +17,7 @@ public class MenuController {
 	
 	
 	@RequestMapping(method=RequestMethod.PUT , value="/menus/{id}")
-	public void updateMenu(@RequestBody Menu menu , @PathVariable int id) {
+	public void updateMenu(@RequestBody Menu menu , @PathVariable String id) {
 		menuService.updateMenu(menu, id);
 	}
 	
@@ -27,12 +27,12 @@ public class MenuController {
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/menus/{id}")
-	public void deleteMenu(@PathVariable int id) {
+	public void deleteMenu(@PathVariable String id) {
 		menuService.deleteMenu(id);
 	}
 	
 	@RequestMapping("/menus/{id}")
-	public Menu getMenu(@PathVariable int id) {
+	public Menu getMenu(@PathVariable String id) {
 		return menuService.getMenu(id);
 	}
 	

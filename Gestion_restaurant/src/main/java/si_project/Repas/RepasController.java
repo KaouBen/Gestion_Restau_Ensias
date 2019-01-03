@@ -1,6 +1,7 @@
 package si_project.Repas;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +16,7 @@ public class RepasController {
 	
 	
 	@RequestMapping(method=RequestMethod.PUT , value="/repas/{id}")
-	public void updateRepas(@RequestBody Repas repas , @PathVariable int id) {
+	public void updateRepas(@RequestBody Repas repas , @PathVariable String id) {
 		repasService.updateRepas(repas, id);
 	}
 	
@@ -25,12 +26,12 @@ public class RepasController {
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/repas/{id}")
-	public void deleteRepas(@PathVariable int id) {
+	public void deleteRepas(@PathVariable String id) {
 		repasService.deleteRepas(id);
 	}
 	
 	@RequestMapping("/repas/{id}")
-	public Repas getRepas(@PathVariable int id) {
+	public Optional<Repas> getRepas(@PathVariable String id) {
 		return repasService.getRepas(id);
 	}
 	

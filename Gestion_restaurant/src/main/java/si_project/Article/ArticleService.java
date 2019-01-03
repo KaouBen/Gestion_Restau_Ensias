@@ -1,43 +1,46 @@
 package si_project.Article;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 
 @Service
 public class ArticleService {
 	
+	@Autowired
+	ArticleRepository articleRepository;
 	List<Article> articles = new ArrayList<Article>();
 	
 	public void addArticle(Article article) {
-		articles.add(article);
+		articleRepository.save(article);
 	}
 	
 	public void updateArticle(Article article , String ref) {
-		for(int i=0;i<articles.size();i++) {
-			Article t = articles.get(i);
-			if(t.getRef().equals(ref)) {
-				articles.set(i, t);
-			}
-		}
+		articleRepository.save(article);
 	}
 	
 	public void deleteArticle(String ref) {
-		articles.removeIf(t -> t.getRef().equals(ref));
+		articleRepository.deleteById(ref);
 		return;
 	}
 	
-	public Article getArticle(String ref) {
-		return articles.stream().filter(t->t.getRef().equals(ref)).findFirst().get();
+	public Optional<Article> getArticle(String ref) {
+		return articleRepository.findById(ref);
 	}
 	
 	public List<Article> getAllArticles(){
-		return this.articles;
+		List<Article> articles = new ArrayList<Article>();
+		articleRepository.findAll().forEach(articles::add);
+		return articles;
 	}
 	
-	public List<Article> getByCategory(String categ){
+	/*public List<Article> getByCategory(String categ){
 		List<Article> nvListe = new ArrayList<>();
 		for(Article article : this.articles) {
 			if(article.getCategorie().equals(categ)) {
@@ -45,5 +48,5 @@ public class ArticleService {
 			}
 		}
 		return nvListe;
-	}
+	}*/
 }

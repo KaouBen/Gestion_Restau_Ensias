@@ -2,6 +2,7 @@ package si_project.Fournisseur;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +17,7 @@ public class FournisseurController {
 	
 	
 	@RequestMapping(method=RequestMethod.PUT , value="/fournisseurs/{id}")
-	public void updateFournisseur(@RequestBody Fournisseur fournisseur , @PathVariable int id) {
+	public void updateFournisseur(@RequestBody Fournisseur fournisseur , @PathVariable String id) {
 		fournisseurService.updateFournisseur(fournisseur, id);
 	}
 	
@@ -26,12 +27,12 @@ public class FournisseurController {
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/fournisseurs/{id}")
-	public void deleteFournisseur(@PathVariable int id) {
+	public void deleteFournisseur(@PathVariable String id) {
 		fournisseurService.deleteFournisseur(id);
 	}
 	
 	@RequestMapping("/fournisseurs/{id}")
-	public Fournisseur getFournisseur(@PathVariable int id) {
+	public Optional<Fournisseur> getFournisseur(@PathVariable String id) {
 		return fournisseurService.getFournisseur(id);
 	}
 	
